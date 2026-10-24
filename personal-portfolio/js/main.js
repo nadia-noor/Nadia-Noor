@@ -753,6 +753,7 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 (function initClickBurst() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!Element.prototype.animate) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
   const COLORS = ['#E879F9', '#f0abfc', '#c084fc', '#818cf8', '#f472b6', '#ffffff'];
 
@@ -799,7 +800,8 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   }
 
   document.addEventListener('pointerdown', e => {
-    if (e.button !== undefined && e.button > 0) return;   /* left click / touch only */
+    if (e.pointerType === 'touch') return;                /* ignore touch / mobile scroll */
+    if (e.button !== undefined && e.button > 0) return;   /* left click only */
     burst(e.clientX, e.clientY);
   });
 })();
