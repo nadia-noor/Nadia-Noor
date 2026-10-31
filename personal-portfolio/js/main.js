@@ -921,3 +921,274 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   intro.addEventListener('click', close);   /* click anywhere to skip */
   later(close, SHOW);
 })();
+
+
+/* ============================================================
+   3D CYLINDRICAL CAROUSEL (FEATURED PROJECTS) CONTROLLER
+   Motion Study 3D Curved Ribbon with Inertia & Spotlight
+   ============================================================ */
+(function init3DCylinder() {
+  const stage     = document.getElementById('cylinder-stage');
+  const viewport  = document.getElementById('cylinder-viewport');
+  const ring      = document.getElementById('cylinder-ring');
+  if (!stage || !viewport || !ring) return;
+
+  const cards     = Array.from(ring.querySelectorAll('.cylinder-card'));
+  const prevBtn   = document.getElementById('cyl-prev');
+  const nextBtn   = document.getElementById('cyl-next');
+  const thumb     = document.getElementById('cyl-thumb');
+  const spotTag   = document.getElementById('spot-tag');
+  const spotTitle = document.getElementById('spot-title');
+  const spotDesc  = document.getElementById('spot-desc');
+  const spotTech  = document.getElementById('spot-tech');
+  const spotLive  = document.getElementById('spot-live');
+  const spotGit   = document.getElementById('spot-github');
+
+  const btn3D     = document.getElementById('btn-view-3d');
+  const btnGrid   = document.getElementById('btn-view-grid');
+  const gridView  = document.getElementById('portfolio-grid');
+
+  const PROJECTS_DATA = [
+    {
+      tag: "01 // STORE ARCHITECTURE",
+      title: "E-Commerce Platform",
+      desc: "Full-stack shopping app with product catalog, cart, secure checkout, and admin dashboard. Features JWT auth and real-time order tracking.",
+      tech: ["React", "Node.js", "MongoDB", "Express"],
+      live: "#",
+      github: "#"
+    },
+    {
+      tag: "02 // COLLABORATIVE FLOW",
+      title: "Task Manager App",
+      desc: "Collaborative project management tool with real-time updates, drag-and-drop boards, user roles, and deadline notifications.",
+      tech: ["React", "Express", "MongoDB", "REST API"],
+      live: "#",
+      github: "#"
+    },
+    {
+      tag: "03 // CONTENT ENGINE",
+      title: "Blog Platform",
+      desc: "Full-featured blogging platform with rich text editing, categories, commenting system, and JWT-based author authentication.",
+      tech: ["React", "Node.js", "MongoDB", "JWT"],
+      live: "#",
+      github: "#"
+    },
+    {
+      tag: "04 // DATA VISUALIZATION",
+      title: "Dashboard Analytics",
+      desc: "Admin analytics dashboard with real-time charts, user management, data filtering, and MongoDB aggregation pipelines.",
+      tech: ["React", "MongoDB", "Express", "Charts"],
+      live: "#",
+      github: "#"
+    },
+    {
+      tag: "05 // REAL-TIME NETWORK",
+      title: "Real-Time Chat App",
+      desc: "Real-time messaging with private and group chats, online status indicators, and message history stored in MongoDB.",
+      tech: ["Socket.io", "Node.js", "React", "MongoDB"],
+      live: "#",
+      github: "#"
+    },
+    {
+      tag: "06 // CAREER PLATFORM",
+      title: "Job Board App",
+      desc: "Job listing platform where employers post opportunities and candidates apply, with filtering, search, and profile management.",
+      tech: ["React", "Express", "MongoDB", "REST API"],
+      live: "#",
+      github: "#"
+    }
+  ];
+
+  const TOTAL_CARDS = cards.length || 12;
+  const STEP_ANGLE  = 360 / TOTAL_CARDS;
+
+  let currentRotY   = 0;
+  let targetRotY    = 0;
+  let autoSpeed     = 0.12;
+  let isDragging    = false;
+  let isHovered     = false;
+  let startX        = 0;
+  let lastX         = 0;
+  let dragVelocity  = 0;
+  let activeProjIdx = -1;
+  let animId        = null;
+
+  /* View switch toggle */
+  if (btn3D && btnGrid && gridView) {
+    btn3D.addEventListener('click', () => {
+      btn3D.classList.add('is-active');
+      btn3D.setAttribute('aria-pressed', 'true');
+      btnGrid.classList.remove('is-active');
+      btnGrid.setAttribute('aria-pressed', 'false');
+      stage.style.display = 'block';
+      gridView.style.display = 'none';
+      targetRotY += 15; /* subtle spin on view activate */
+    });
+
+    btnGrid.addEventListener('click', () => {
+      btnGrid.classList.add('is-active');
+      btnGrid.setAttribute('aria-pressed', 'true');
+      btn3D.classList.remove('is-active');
+      btn3D.setAttribute('aria-pressed', 'false');
+      stage.style.display = 'none';
+      gridView.style.display = 'grid';
+    });
+  }
+
+  /* Pointer Drag Events (mouse + touch with inertia) */
+  viewport.addEventListener('pointerdown', e => {
+    isDragging   = true;
+    startX       = e.clientX;
+    lastX        = e.clientX;
+    dragVelocity = 0;
+    try { viewport.setPointerCapture(e.pointerId); } catch(_) {}
+  });
+
+  viewport.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - lastX;
+    lastX = e.clientX;
+    targetRotY += deltaX * 0.36;
+    dragVelocity = deltaX * 0.36;
+  });
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    try { viewport.releasePointerCapture(e.pointerId); } catch(_) {}
+  }
+
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+
+  /* Hover pause / slow */
+  stage.addEventListener('mouseenter', () => { isHovered = true; });
+  stage.addEventListener('mouseleave', () => { isHovered = false; });
+
+  /* Mouse Wheel / Trackpad Scroll interaction */
+  viewport.addEventListener('wheel', e => {
+    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) > 3) {
+      e.preventDefault();
+      targetRotY -= delta * 0.16;
+      dragVelocity = -delta * 0.08;
+    }
+  }, { passive: false });
+
+  /* Arrow Buttons */
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      targetRotY += STEP_ANGLE;
+      dragVelocity = 0;
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      targetRotY -= STEP_ANGLE;
+      dragVelocity = 0;
+    });
+  }
+
+  /* Card Click to Center */
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      /* base angle of card idx is idx * STEP_ANGLE */
+      const baseAngle = idx * STEP_ANGLE;
+      /* we want (baseAngle + targetRotY) % 360 == 0 */
+      let diff = (-baseAngle - targetRotY) % 360;
+      if (diff > 180)  diff -= 360;
+      if (diff < -180) diff += 360;
+      targetRotY += diff;
+      dragVelocity = 0;
+    });
+  });
+
+  /* Update Spotlight Content */
+  function updateSpotlight(projIdx) {
+    if (projIdx === activeProjIdx) return;
+    activeProjIdx = projIdx;
+    const data = PROJECTS_DATA[projIdx % PROJECTS_DATA.length];
+    if (!data) return;
+
+    if (spotTag)   spotTag.textContent   = data.tag;
+    if (spotTitle) spotTitle.textContent = data.title;
+    if (spotDesc)  spotDesc.textContent  = data.desc;
+    if (spotLive)  spotLive.href         = data.live;
+    if (spotGit)   spotGit.href          = data.github;
+
+    if (spotTech) {
+      spotTech.innerHTML = data.tech.map(t => `<li>${t}</li>`).join('');
+    }
+  }
+
+  /* Main Animation Loop */
+  function tick() {
+    /* Apply inertia velocity or auto-rotation */
+    if (isDragging) {
+      /* manually driven by pointer */
+    } else if (Math.abs(dragVelocity) > 0.04) {
+      targetRotY += dragVelocity;
+      dragVelocity *= 0.94;
+    } else if (!isHovered) {
+      targetRotY -= autoSpeed;
+    }
+
+    /* Lerp current towards target */
+    currentRotY += (targetRotY - currentRotY) * 0.1;
+
+    /* Update CSS transform on the ring */
+    ring.style.transform = `rotateX(var(--cyl-tilt)) rotateY(${currentRotY}deg)`;
+
+    /* Scrubber thumb position (wraps 0 to 100%) */
+    if (thumb) {
+      const normalizedAngle = ((-currentRotY % 360) + 360) % 360;
+      const progress = (normalizedAngle / 360) * 300;
+      thumb.style.transform = `translateX(${progress}%)`;
+    }
+
+    /* Depth shading & active card calculation */
+    let minDiff = Infinity;
+    let closestCardIdx = 0;
+
+    cards.forEach((card, i) => {
+      const baseAngle = i * STEP_ANGLE;
+      /* Current screen-facing angle */
+      let screenAngle = (baseAngle + currentRotY) % 360;
+      if (screenAngle > 180)  screenAngle -= 360;
+      if (screenAngle < -180) screenAngle += 360;
+
+      const absAngle = Math.abs(screenAngle);
+      if (absAngle < minDiff) {
+        minDiff = absAngle;
+        closestCardIdx = i;
+      }
+
+      /* Depth calculations: 0deg = front, 180deg = rear */
+      const depthRatio = 1 - (absAngle / 180); /* 1 at front, 0 at back */
+      const brightness = 0.35 + (depthRatio * 0.65);
+      const opacity    = 0.42 + (depthRatio * 0.58);
+
+      card.style.filter  = `brightness(${brightness.toFixed(3)})`;
+      card.style.opacity = opacity.toFixed(3);
+
+      if (absAngle < 16) {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+    });
+
+    /* Sync active card's project to spotlight */
+    const activeCard = cards[closestCardIdx];
+    if (activeCard && activeCard.dataset.project !== undefined) {
+      const pIdx = parseInt(activeCard.dataset.project, 10);
+      updateSpotlight(pIdx);
+    }
+
+    animId = requestAnimationFrame(tick);
+  }
+
+  /* Start loop */
+  tick();
+})();
+

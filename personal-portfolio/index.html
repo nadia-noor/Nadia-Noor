@@ -304,12 +304,422 @@
       <div class="container">
 
         <div class="section__header reveal-up" data-bg="PROJECTS">
-          <span class="section__tag">My Work</span>
+          <div class="portfolio__meta-tag">
+            <span class="meta-dot"></span>
+            <span>CHROMATIC // 3D MOTION STUDY</span>
+          </div>
           <h2 class="section__title">Featured <span class="accent">Projects</span></h2>
-          <p class="section__desc">A selection of MERN stack projects I've built</p>
+          <p class="section__desc">Interactive 3D cylinder showcase &mdash; drag, scroll, or click cards to explore MERN applications</p>
+
+          <!-- View Switcher -->
+          <div class="portfolio__view-switch" role="group" aria-label="View toggle">
+            <button type="button" class="view-btn is-active" id="btn-view-3d" aria-pressed="true">
+              <i class="ri-compass-3-line" aria-hidden="true"></i> 3D Cylinder
+            </button>
+            <button type="button" class="view-btn" id="btn-view-grid" aria-pressed="false">
+              <i class="ri-grid-fill" aria-hidden="true"></i> Grid View
+            </button>
+          </div>
         </div>
 
-        <div class="portfolio__grid">
+        <!-- ========== 3D CYLINDER STAGE ========== -->
+        <div class="cylinder-stage" id="cylinder-stage">
+          <div class="cylinder-stage__ambient" aria-hidden="true"></div>
+
+          <!-- 3D Perspective Viewport -->
+          <div class="cylinder-viewport" id="cylinder-viewport" role="region" aria-label="3D Project Ribbon">
+            <div class="cylinder-ring" id="cylinder-ring">
+
+              <!-- Card 0 -->
+              <div class="cylinder-card" data-index="0" data-project="0" style="--i:0">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p1.jpg" alt="E-Commerce Platform" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">&lt;StoreApp /&gt;</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">01 / STORE</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">E-Commerce Platform</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>Node.js</span><span>MongoDB</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">MERN // 01</span>
+                    <div class="cylinder-card__back-code">const Store = () =&gt; &lt;Cart /&gt;;</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 1 -->
+              <div class="cylinder-card" data-index="1" data-project="1" style="--i:1">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p2.jpg" alt="Task Manager App" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">Task.create()</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">02 / FLOW</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Task Manager App</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>Express</span><span>REST API</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">WORKFLOW // 02</span>
+                    <div class="cylinder-card__back-code">await Task.dispatch();</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="cylinder-card" data-index="2" data-project="2" style="--i:2">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p3.jpg" alt="Blog Platform" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">jwt.sign()</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">03 / PUBLISH</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Blog Platform</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>Node.js</span><span>JWT</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">EDITORIAL // 03</span>
+                    <div class="cylinder-card__back-code">jwt.verify(token, key);</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="cylinder-card" data-index="3" data-project="3" style="--i:3">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p4.jpg" alt="Dashboard Analytics" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">db.aggregate()</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">04 / METRICS</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Dashboard Analytics</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>MongoDB</span><span>Charts</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">ANALYTICS // 04</span>
+                    <div class="cylinder-card__back-code">db.metrics.pipeline();</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="cylinder-card" data-index="4" data-project="4" style="--i:4">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p5.jpg" alt="Real-Time Chat App" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">socket.on()</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">05 / SOCKET</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Real-Time Chat App</h4>
+                      <div class="cylinder-card__tags">
+                        <span>Socket.io</span><span>Node.js</span><span>React</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">WEBSOCKET // 05</span>
+                    <div class="cylinder-card__back-code">io.broadcast(payload);</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="cylinder-card" data-index="5" data-project="5" style="--i:5">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p6.jpg" alt="Job Board App" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">jobController</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">06 / CAREER</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Job Board App</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>Express</span><span>REST API</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">PLATFORM // 06</span>
+                    <div class="cylinder-card__back-code">router.get('/jobs');</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="cylinder-card" data-index="6" data-project="0" style="--i:6">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p1.jpg" alt="Cloud Storefront" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">&lt;Checkout /&gt;</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">07 / SCALE</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Cloud Storefront</h4>
+                      <div class="cylinder-card__tags">
+                        <span>Stripe</span><span>Node.js</span><span>Redux</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">FINTECH // 07</span>
+                    <div class="cylinder-card__back-code">stripe.checkout.create();</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 7 -->
+              <div class="cylinder-card" data-index="7" data-project="1" style="--i:7">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p2.jpg" alt="Sprint Kanban Board" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">dnd-kit</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">08 / AGILE</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Sprint Kanban Board</h4>
+                      <div class="cylinder-card__tags">
+                        <span>React</span><span>DnD</span><span>Tailwind</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">PRODUCTIVITY // 08</span>
+                    <div class="cylinder-card__back-code">board.reorder(column);</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 8 -->
+              <div class="cylinder-card" data-index="8" data-project="2" style="--i:8">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p3.jpg" alt="Dev Editorial CMS" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">markdown.parse</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">09 / CMS</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Dev Editorial CMS</h4>
+                      <div class="cylinder-card__tags">
+                        <span>Next.js</span><span>MDX</span><span>Node.js</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">CONTENT // 09</span>
+                    <div class="cylinder-card__back-code">mdx.compile(source);</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 9 -->
+              <div class="cylinder-card" data-index="9" data-project="3" style="--i:9">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p4.jpg" alt="Data Stream Engine" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">pipeline.stream</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">10 / TELEMETRY</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Data Stream Engine</h4>
+                      <div class="cylinder-card__tags">
+                        <span>Redis</span><span>Express</span><span>D3.js</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">BIG DATA // 10</span>
+                    <div class="cylinder-card__back-code">stream.pipe(pipeline);</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 10 -->
+              <div class="cylinder-card" data-index="10" data-project="4" style="--i:10">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p5.jpg" alt="Audio Pulse Messenger" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">WebRTC.peer</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">11 / WEBRTC</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Audio Pulse Messenger</h4>
+                      <div class="cylinder-card__tags">
+                        <span>WebRTC</span><span>Socket.io</span><span>React</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">VOIP // 11</span>
+                    <div class="cylinder-card__back-code">peer.createOffer();</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 11 -->
+              <div class="cylinder-card" data-index="11" data-project="5" style="--i:11">
+                <div class="cylinder-card__inner">
+                  <div class="cylinder-card__front">
+                    <div class="cylinder-card__visual">
+                      <img src="assets/images/projects/p6.jpg" alt="Enterprise Portal" class="cylinder-card__img" loading="lazy" />
+                      <div class="cylinder-card__visual-overlay"></div>
+                      <span class="cylinder-card__code-badge">OAuth2.0</span>
+                    </div>
+                    <div class="cylinder-card__content">
+                      <div class="cylinder-card__header">
+                        <span class="cylinder-card__num">12 / ENTERPRISE</span>
+                        <span class="cylinder-card__dot"></span>
+                      </div>
+                      <h4 class="cylinder-card__title">Enterprise Portal</h4>
+                      <div class="cylinder-card__tags">
+                        <span>OAuth</span><span>Docker</span><span>Express</span>
+                      </div>
+                    </div>
+                    <div class="cylinder-card__shine"></div>
+                  </div>
+                  <div class="cylinder-card__back">
+                    <div class="cylinder-card__back-grid"></div>
+                    <span class="cylinder-card__back-watermark">SSO // 12</span>
+                    <div class="cylinder-card__back-code">oauth.authenticate();</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Controls: Scrubber + Drag hint + Arrow buttons -->
+          <div class="cylinder-controls">
+            <button type="button" class="cylinder-nav-btn cylinder-nav-btn--prev" id="cyl-prev" aria-label="Rotate left">
+              <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
+            </button>
+            <div class="cylinder-scrubber" id="cyl-scrubber">
+              <div class="cylinder-scrubber__track">
+                <div class="cylinder-scrubber__thumb" id="cyl-thumb"></div>
+              </div>
+              <span class="cylinder-scrubber__label">
+                <i class="ri-drag-move-fill" aria-hidden="true"></i> SCROLL TO FLOAT &bull; DRAG TO EXPLORE
+              </span>
+            </div>
+            <button type="button" class="cylinder-nav-btn cylinder-nav-btn--next" id="cyl-next" aria-label="Rotate right">
+              <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <!-- Dynamic Project Spotlight Box -->
+          <div class="cylinder-spotlight" id="cylinder-spotlight">
+            <div class="spotlight__header">
+              <span class="spotlight__tag" id="spot-tag">01 // MERN ARCHITECTURE</span>
+              <span class="spotlight__status"><i class="status-pulse" aria-hidden="true"></i> In Spotlight</span>
+            </div>
+            <h3 class="spotlight__title" id="spot-title">E-Commerce Platform</h3>
+            <p class="spotlight__desc" id="spot-desc">Full-stack shopping app with product catalog, cart, secure checkout, and admin dashboard. Features JWT auth and real-time order tracking.</p>
+            <div class="spotlight__footer">
+              <ul class="spotlight__tech" id="spot-tech" aria-label="Technologies">
+                <li>React</li><li>Node.js</li><li>MongoDB</li><li>Express</li>
+              </ul>
+              <div class="spotlight__actions">
+                <a href="#" class="btn btn--sm btn--primary" id="spot-live"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                <a href="#" class="btn btn--sm btn--ghost" id="spot-github"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio__grid" id="portfolio-grid" style="display: none;">
 
           <article class="project-card reveal-up" style="--delay:0.05s">
             <div class="project-card__image">
