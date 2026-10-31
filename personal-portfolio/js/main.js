@@ -921,3 +921,154 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   intro.addEventListener('click', close);   /* click anywhere to skip */
   later(close, SHOW);
 })();
+
+
+/* ============================================================
+   3D CYLINDER CAROUSEL CONTROLLER FOR FEATURED PROJECT CARDS
+   Smooth 3D Floating, Drag with Inertia, Wheel Scroll, Click-to-Center
+   ============================================================ */
+(function initProjectCylinder() {
+  const viewport = document.getElementById('portfolio-cylinder');
+  const ring     = document.getElementById('portfolio-ring');
+  if (!viewport || !ring) return;
+
+  const cards = Array.from(ring.querySelectorAll('.project-card'));
+  if (!cards.length) return;
+
+  const TOTAL_CARDS = cards.length;
+  const STEP_ANGLE  = 360 / TOTAL_CARDS;
+
+  let currentRotY  = 0;
+  let targetRotY   = 0;
+  let autoSpeed    = 0.1;
+  let isDragging   = false;
+  let isHovered    = false;
+  let lastX        = 0;
+  let dragVelocity = 0;
+  let hasDragged   = false;
+
+  /* Pause auto-rotation on hover */
+  viewport.addEventListener('mouseenter', () => { isHovered = true; });
+  viewport.addEventListener('mouseleave', () => { isHovered = false; });
+
+  /* Pointer events: mouse drag and mobile touch swipe */
+  viewport.addEventListener('pointerdown', e => {
+    isDragging   = true;
+    hasDragged   = false;
+    lastX        = e.clientX;
+    dragVelocity = 0;
+    try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+
+  viewport.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - lastX;
+    if (Math.abs(deltaX) > 2) hasDragged = true;
+    lastX = e.clientX;
+    targetRotY += deltaX * 0.35;
+    dragVelocity = deltaX * 0.35;
+  });
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    try { viewport.releasePointerCapture(e.pointerId); } catch (_) {}
+  }
+
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+
+  /* Mouse Wheel / Trackpad scroll rotates the cylinder */
+  viewport.addEventListener('wheel', e => {
+    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) > 3) {
+      e.preventDefault();
+      targetRotY -= delta * 0.16;
+      dragVelocity = -delta * 0.08;
+    }
+  }, { passive: false });
+
+  /* Clicking a card centers it in the front */
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', e => {
+      /* If user was dragging, don't trigger click-to-center */
+      if (hasDragged) return;
+
+      /* If clicking links/buttons on front card, let them navigate normally */
+      if (e.target.closest('a, button')) return;
+
+      const baseAngle = idx * STEP_ANGLE;
+      let diff = (-baseAngle - targetRotY) % 360;
+      if (diff > 180)  diff -= 360;
+      if (diff < -180) diff += 360;
+      targetRotY += diff;
+      dragVelocity = 0;
+    });
+  });
+
+  /* Animation tick loop */
+  function tick() {
+    if (isDragging) {
+      /* Manual drag */
+    } else if (Math.abs(dragVelocity) > 0.03) {
+      targetRotY += dragVelocity;
+      dragVelocity *= 0.94;
+    } else if (!isHovered) {
+      targetRotY -= autoSpeed;
+    }
+
+    /* Smooth lerp */
+    currentRotY += (targetRotY - currentRotY) * 0.1;
+
+    /* Update ring 3D transform */
+    ring.style.transform = `rotateX(var(--p-tilt)) rotateY(${currentRotY}deg)`;
+
+    /* Compute depth shading and front active card */
+    let minDiff = Infinity;
+    let frontIdx = 0;
+
+    cards.forEach((card, i) => {
+      const baseAngle = i * STEP_ANGLE;
+      let screenAngle = (baseAngle + currentRotY) % 360;
+      if (screenAngle > 180)  screenAngle -= 360;
+      if (screenAngle < -180) screenAngle += 360;
+
+      const absAngle = Math.abs(screenAngle);
+      if (absAngle < minDiff) {
+        minDiff = absAngle;
+        frontIdx = i;
+      }
+
+      /* Depth ratio: 0deg = front, 180deg = rear */
+      const depthRatio = 1 - (absAngle / 180);
+      const brightness = 0.42 + (depthRatio * 0.58);
+      const opacity    = 0.5 + (depthRatio * 0.5);
+
+      card.style.filter  = `brightness(${brightness.toFixed(3)})`;
+      card.style.opacity = opacity.toFixed(3);
+
+      /* Allow clicks only on cards facing towards the viewer */
+      if (absAngle < 45) {
+        card.style.pointerEvents = 'auto';
+        card.style.zIndex = '10';
+      } else if (absAngle < 90) {
+        card.style.pointerEvents = 'auto';
+        card.style.zIndex = '5';
+      } else {
+        card.style.pointerEvents = 'none';
+        card.style.zIndex = '1';
+      }
+
+      if (absAngle < 20) {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+

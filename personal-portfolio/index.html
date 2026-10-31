@@ -309,134 +309,144 @@
           <p class="section__desc">A selection of MERN stack projects I've built</p>
         </div>
 
-        <div class="portfolio__grid">
+        <!-- ========== 3D CYLINDER CAROUSEL (FEATURED PROJECTS) ========== -->
+        <div class="portfolio__cylinder-viewport" id="portfolio-cylinder">
+          <div class="portfolio__grid portfolio__grid--cylinder" id="portfolio-ring">
 
-          <article class="project-card reveal-up" style="--delay:0.05s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-1">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">const</span> <span style="color:#e8f6f9">ShopApp</span> <span style="color:#8fdcea">=</span> <span style="color:#2DB4CD">() =&gt; {</span><br/>
-                  &nbsp;&nbsp;<span style="color:#8fdcea">return</span> <span style="color:#2DB4CD">&lt;</span><span style="color:#e8f6f9">Store</span> <span style="color:#2DB4CD">/&gt;</span><br/>
-                  <span style="color:#2DB4CD">}</span>
+            <article class="project-card" data-index="0" style="--i:0">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-1">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">const</span> <span style="color:#e8f6f9">ShopApp</span> <span style="color:#8fdcea">=</span> <span style="color:#2DB4CD">() =&gt; {</span><br/>
+                    &nbsp;&nbsp;<span style="color:#8fdcea">return</span> <span style="color:#2DB4CD">&lt;</span><span style="color:#e8f6f9">Store</span> <span style="color:#2DB4CD">/&gt;</span><br/>
+                    <span style="color:#2DB4CD">}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">E-Commerce Platform</h3>
-              <p class="project-card__desc">Full-stack shopping app with product catalog, cart, secure checkout, and admin dashboard. Features JWT auth and real-time order tracking.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>MongoDB</li><li>Express</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up" style="--delay:0.1s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-2">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">app</span><span style="color:#8fdcea">.post</span><span style="color:#e8f6f9">('/tasks',</span><br/>
-                  &nbsp;&nbsp;<span style="color:#2DB4CD">async</span> <span style="color:#e8f6f9">(req, res)</span> <span style="color:#8fdcea">=&gt;</span> <span style="color:#2DB4CD">{</span><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">await Task.create</span><span style="color:#2DB4CD">(req.body)</span>
+              <div class="project-card__body">
+                <h3 class="project-card__title">E-Commerce Platform</h3>
+                <p class="project-card__desc">Full-stack shopping app with product catalog, cart, secure checkout, and admin dashboard. Features JWT auth and real-time order tracking.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>MongoDB</li><li>Express</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Task Manager App</h3>
-              <p class="project-card__desc">Collaborative project management tool with real-time updates, drag-and-drop boards, user roles, and deadline notifications.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>REST API</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="project-card reveal-up" style="--delay:0.15s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-3">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">const</span> <span style="color:#e8f6f9">token</span> <span style="color:#8fdcea">=</span> <span style="color:#2DB4CD">jwt</span><br/>
-                  &nbsp;&nbsp;<span style="color:#8fdcea">.sign</span><span style="color:#e8f6f9">({ userId },</span><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2DB4CD">process.env.SECRET</span>
+            <article class="project-card" data-index="1" style="--i:1">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-2">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">app</span><span style="color:#8fdcea">.post</span><span style="color:#e8f6f9">('/tasks',</span><br/>
+                    &nbsp;&nbsp;<span style="color:#2DB4CD">async</span> <span style="color:#e8f6f9">(req, res)</span> <span style="color:#8fdcea">=&gt;</span> <span style="color:#2DB4CD">{</span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">await Task.create</span><span style="color:#2DB4CD">(req.body)</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Blog Platform</h3>
-              <p class="project-card__desc">Full-featured blogging platform with rich text editing, categories, commenting system, and JWT-based author authentication.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>MongoDB</li><li>JWT</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up" style="--delay:0.2s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-4">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">db</span><span style="color:#8fdcea">.collection</span><br/>
-                  &nbsp;&nbsp;<span style="color:#e8f6f9">('users')</span><br/>
-                  &nbsp;&nbsp;<span style="color:#8fdcea">.aggregate</span><span style="color:#2DB4CD">([...])</span>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Task Manager App</h3>
+                <p class="project-card__desc">Collaborative project management tool with real-time updates, drag-and-drop boards, user roles, and deadline notifications.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>REST API</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Dashboard Analytics</h3>
-              <p class="project-card__desc">Admin analytics dashboard with real-time charts, user management, data filtering, and MongoDB aggregation pipelines.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>Charts</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="project-card reveal-up" style="--delay:0.25s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-5">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">socket</span><span style="color:#8fdcea">.on</span><br/>
-                  &nbsp;&nbsp;<span style="color:#e8f6f9">('message',</span> <span style="color:#2DB4CD">msg</span> <span style="color:#8fdcea">=&gt;</span><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">broadcast</span><span style="color:#2DB4CD">(msg)</span>
+            <article class="project-card" data-index="2" style="--i:2">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-3">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">const</span> <span style="color:#e8f6f9">token</span> <span style="color:#8fdcea">=</span> <span style="color:#2DB4CD">jwt</span><br/>
+                    &nbsp;&nbsp;<span style="color:#8fdcea">.sign</span><span style="color:#e8f6f9">({ userId },</span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2DB4CD">process.env.SECRET</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Real-Time Chat App</h3>
-              <p class="project-card__desc">Real-time messaging with private and group chats, online status indicators, and message history stored in MongoDB.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>Socket.io</li><li>MongoDB</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up" style="--delay:0.3s">
-            <div class="project-card__image">
-              <div class="project-card__image-inner proj-bg-6">
-                <div class="project-card__preview-code">
-                  <span style="color:#2DB4CD">router</span><span style="color:#8fdcea">.get</span><br/>
-                  &nbsp;&nbsp;<span style="color:#e8f6f9">('/jobs',</span> <span style="color:#2DB4CD">auth,</span><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">jobController</span><span style="color:#2DB4CD">)</span>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Blog Platform</h3>
+                <p class="project-card__desc">Full-featured blogging platform with rich text editing, categories, commenting system, and JWT-based author authentication.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>MongoDB</li><li>JWT</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
                 </div>
               </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">Job Board App</h3>
-              <p class="project-card__desc">Job listing platform where employers post opportunities and candidates apply, with filtering, search, and profile management.</p>
-              <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>REST API</li></ul>
-              <div class="project-card__actions">
-                <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
-                <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
-              </div>
-            </div>
-          </article>
+            </article>
 
+            <article class="project-card" data-index="3" style="--i:3">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-4">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">db</span><span style="color:#8fdcea">.collection</span><br/>
+                    &nbsp;&nbsp;<span style="color:#e8f6f9">('users')</span><br/>
+                    &nbsp;&nbsp;<span style="color:#8fdcea">.aggregate</span><span style="color:#2DB4CD">([...])</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Dashboard Analytics</h3>
+                <p class="project-card__desc">Admin analytics dashboard with real-time charts, user management, data filtering, and MongoDB aggregation pipelines.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>Charts</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="4" style="--i:4">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-5">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">socket</span><span style="color:#8fdcea">.on</span><br/>
+                    &nbsp;&nbsp;<span style="color:#e8f6f9">('message',</span> <span style="color:#2DB4CD">msg</span> <span style="color:#8fdcea">=&gt;</span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">broadcast</span><span style="color:#2DB4CD">(msg)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Real-Time Chat App</h3>
+                <p class="project-card__desc">Real-time messaging with private and group chats, online status indicators, and message history stored in MongoDB.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Node.js</li><li>Socket.io</li><li>MongoDB</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="5" style="--i:5">
+              <div class="project-card__image">
+                <div class="project-card__image-inner proj-bg-6">
+                  <div class="project-card__preview-code">
+                    <span style="color:#2DB4CD">router</span><span style="color:#8fdcea">.get</span><br/>
+                    &nbsp;&nbsp;<span style="color:#e8f6f9">('/jobs',</span> <span style="color:#2DB4CD">auth,</span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e8f6f9">jobController</span><span style="color:#2DB4CD">)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Job Board App</h3>
+                <p class="project-card__desc">Job listing platform where employers post opportunities and candidates apply, with filtering, search, and profile management.</p>
+                <ul class="project-card__tech" aria-label="Technologies"><li>React</li><li>Express</li><li>MongoDB</li><li>REST API</li></ul>
+                <div class="project-card__actions">
+                  <a href="#" class="btn btn--sm btn--primary"><i class="ri-external-link-line" aria-hidden="true"></i> Live Demo</a>
+                  <a href="#" class="btn btn--sm btn--ghost"><i class="ri-github-fill" aria-hidden="true"></i> GitHub</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Interactive Drag & Scroll Hint from reference image -->
+        <div class="portfolio__cylinder-hint">
+          <span class="cylinder-hint-line"></span>
+          <span class="cylinder-hint-text"><i class="ri-drag-move-fill" aria-hidden="true"></i> SCROLL TO FLOAT &bull; DRAG TO EXPLORE</span>
+          <span class="cylinder-hint-line"></span>
         </div>
       </div>
     </section>
