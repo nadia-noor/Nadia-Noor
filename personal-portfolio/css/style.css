@@ -1287,6 +1287,7 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .proj-bg-4 { background: linear-gradient(135deg,#0a1f2a 0%,#164a5e 50%,#0a1f2a 100%); }
 .proj-bg-5 { background: linear-gradient(135deg,#2a0d18 0%,#481828 50%,#2a0d18 100%); }
 .proj-bg-6 { background: linear-gradient(135deg,#0d2a2a 0%,#184840 50%,#0d2a2a 100%); }
+.proj-bg-7 { background: linear-gradient(135deg,#13112c 0%,#2b1f54 50%,#13112c 100%); }
 
 .project-card__preview-code {
   font-family: var(--mono);
